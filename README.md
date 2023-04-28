@@ -1,2 +1,1 @@
-# api.template
-API Template for C#
+# API Template for C#
