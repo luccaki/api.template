@@ -1,7 +1,5 @@
 ﻿using Api.Template.ApplicationCore.Dto;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Api.Template.ApplicationCore.Interfaces.Services;
 using Api.Template.ApplicationCore.Interfaces.Repositories;
 using Api.Template.ApplicationCore.Exceptions;
@@ -17,7 +15,7 @@ namespace Api.Template.ApplicationCore.Services
             _templateRepository = TemplateRepository;
         }
 
-        public async Task<TemplateResultDto> GetTemplateAsync(int? pageNumber, string name)
+        public async Task<TemplateResultDto?> GetTemplateAsync(int? pageNumber, string? name)
         {
             if (pageNumber.HasValue && pageNumber.Value <= 0)
                 throw new BusinessException("Paginação a partir da página 1", HttpStatusCode.BadRequest);
@@ -30,7 +28,7 @@ namespace Api.Template.ApplicationCore.Services
             var result = await _templateRepository.GetTemplateFullDetailsByFilterAsync(new TemplateSearchFilterDto()
             {
                 PageNumber = pageNumber.Value,
-                KeyWord = name,
+                KeyWord = name ?? String.Empty,
             });
 
             return new TemplateResultDto()
@@ -46,7 +44,7 @@ namespace Api.Template.ApplicationCore.Services
             };
         }
 
-        public async Task<TemplateDto> GetTemplateByIdAsync(int TemplateId)
+        public async Task<TemplateDto?> GetTemplateByIdAsync(int TemplateId)
         {
             var result = await _templateRepository.GetTemplateByIdAsync(TemplateId);
             if (result == null)

@@ -1,10 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Api.Template.ApplicationCore.Helpers;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using Api.Template.ApplicationCore.Dto;
 using System.Text.RegularExpressions;
 using Api.Template.ApplicationCore.Interfaces.Repositories;
@@ -13,7 +10,7 @@ namespace Api.Template.Infrastructure.Repositories
 {
     public class TemplateRepository : ITemplateRepository
     {
-        public async Task<ApplicationCore.Entities.Template> GetTemplateByIdAsync(int templateId)
+        public async Task<ApplicationCore.Entities.Template?> GetTemplateByIdAsync(int templateId)
         {
             var @params = new DynamicParameters();
 

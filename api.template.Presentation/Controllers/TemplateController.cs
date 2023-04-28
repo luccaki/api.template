@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Api.Template.ApplicationCore.Dto;
 using Api.Template.ApplicationCore.Interfaces.Services;
 
@@ -25,7 +24,7 @@ namespace Api.Template.Presentation.Controllers
         /// <response code="404">None template found</response> 
         [HttpGet]
         [ProducesResponseType(typeof(TemplateResultDto), 200)]
-        public async Task<IActionResult> GetTemplatesAsync([FromQuery] int? pageNumber, [FromQuery] string name)
+        public async Task<IActionResult> GetTemplatesAsync([FromQuery] int? pageNumber, [FromQuery] string? name)
         {
             return Ok(await _templateService.GetTemplateAsync(pageNumber, name));
         }
